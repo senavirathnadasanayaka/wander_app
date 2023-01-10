@@ -19,6 +19,7 @@ import Pinnewala from "./screens/AREA/Pinnewala";
 import Town from "./screens/AREA/Town";
 import Galle from "./screens/AREA/Galle";
 import Adams from "./screens/AREA/Adams";
+import Discover from "./screens/Discover";
 
 const Stack = createNativeStackNavigator();
 
@@ -27,8 +28,8 @@ export default function App() {
     <TailwindProvider>
       <NavigationContainer>
         <Stack.Navigator>
-          <Stack.Screen name="Home" component={HomeScreen} />
-          <Stack.Screen name="Discover" component={discover} />
+          <Stack.Screen name="Home1" component={HomeScreen} />
+          <Stack.Screen name="Discover" component={Discover} />
           <Stack.Screen name="Maps" component={Maps} />
           <Stack.Screen name="Hotel" component={Hotel} />
           <Stack.Screen name="Area" component={Area} />

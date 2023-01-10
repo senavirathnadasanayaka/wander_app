@@ -12,7 +12,7 @@ const Discover = () => {
     navigation.setOptions({
       headerShown: false,
     });
-  }, []);
+  }, [])
 
 
     return (
