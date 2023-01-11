@@ -49,6 +49,8 @@ const Discover = () => {
               <Text className="mt-10 text-2xl left-4">Area</Text>
             </View>
           </TouchableOpacity>
+         
+          
         </SafeAreaView>
       </TailwindProvider>
     );

@@ -4,9 +4,8 @@ import { TailwindProvider } from "tailwindcss-react-native";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import HomeScreen from "./screens/HomeScreen";
-import discover from "./screens/Discover";
 import Maps from "./screens/Maps";
-import Hotel from "./screens/Hotel";
+import Hotel from "./screens/Hotels/Hotel";
 import Area from "./screens/AREA/Area";
 import Sigiriya from "./screens/AREA/Sigiriya";
 import Nuwara from "./screens/AREA/Nuwara";
@@ -20,6 +19,8 @@ import Town from "./screens/AREA/Town";
 import Galle from "./screens/AREA/Galle";
 import Adams from "./screens/AREA/Adams";
 import Discover from "./screens/Discover";
+import Central from "./screens/Hotels/Central";
+import Short from "./screens/Shorttrip/Short";
 
 const Stack = createNativeStackNavigator();
 
@@ -44,6 +45,8 @@ export default function App() {
           <Stack.Screen name="Town" component={Town} />
           <Stack.Screen name="Yala" component={Yala} />
           <Stack.Screen name="Galle" component={Galle} />
+          <Stack.Screen name="Central" component={Central} />
+          
         </Stack.Navigator>
       </NavigationContainer>
     </TailwindProvider>

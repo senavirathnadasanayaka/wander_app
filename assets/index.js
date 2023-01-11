@@ -12,3 +12,4 @@ export { default as End } from "../assets/end.jpg";
 export { default as Sin} from "../assets/sinh.jpg";
 export { default as Pinna } from "../assets/pinna.jpg";
 export { default as Tooth } from "../assets/tooth.jpeg";
+export { default as Wander } from "../assets/wander.png";
