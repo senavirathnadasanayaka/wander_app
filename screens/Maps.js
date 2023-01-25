@@ -26,20 +26,21 @@ export default function App() {
             className="w-98 h-5/6 mt-20 "
             provider={PROVIDER_GOOGLE}
             region={{
-              latitude: 37.78825,
-              longitude: -122.4324,
+              latitude: 7.957,
+              longitude: 80.7603,
               latitudeDelta: 0.015,
               longitudeDelta: 0.0121,
             }}
           >
-          <Marker>
-            cordinate={{
-              latitude: 37.78825,
-              longitude: -122.4324,
-            }}
-            <Image source={Maker1}/>
-          </Marker>
-    
+            <Marker
+              coordinate={{
+                latitude: 7.957,
+                longitude: 80.7603,
+              }}
+              title={"Sigiriya"}
+              description={"d"}
+            
+            />
           </MapView>
         </View>
       </View>
