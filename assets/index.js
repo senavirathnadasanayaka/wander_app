@@ -13,3 +13,5 @@ export { default as Sin} from "../assets/sinh.jpg";
 export { default as Pinna } from "../assets/pinna.jpg";
 export { default as Tooth } from "../assets/tooth.jpeg";
 export { default as Wander } from "../assets/wander.png";
+export { default as Maker1 } from "../assets/maker1.png";
+export { default as Maker2 } from "../assets/maker2.png";

@@ -4,7 +4,7 @@ import { useNavigation } from "@react-navigation/native";
 import React, { createElement, useLayoutEffect } from "react";
 import { TailwindProvider } from "tailwindcss-react-native";
 import * as Animatable from "react-native-animatable";
-import { Avatar, Para, Shoes ,Wander } from "../assets/index";
+import { Shoes ,Wander } from "../assets/index";
 
 
 
