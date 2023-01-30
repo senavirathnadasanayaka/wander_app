@@ -3,6 +3,7 @@ import { useNavigation } from "@react-navigation/native";
 import { TailwindProvider } from "tailwindcss-react-native";
 import React, {useLayoutEffect } from "react";
 import { GooglePlacesAutocomplete } from "react-native-google-places-autocomplete";
+import Short from "./Shorttrip/Short";
 
 
 const Discover = () => {
@@ -49,8 +50,11 @@ const Discover = () => {
               <Text className="mt-10 text-2xl left-4">Area</Text>
             </View>
           </TouchableOpacity>
-         
-          
+          <TouchableOpacity onPress={() => navigation.navigate("Short")}>
+            <View>
+              <Text className="mt-10 text-2xl left-4">Short Trip</Text>
+            </View>
+          </TouchableOpacity>
         </SafeAreaView>
       </TailwindProvider>
     );

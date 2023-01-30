@@ -1,5 +1,3 @@
-import { StatusBar } from "expo-status-bar";
-import { SafeAreaView, Text, View } from "react-native";
 import { TailwindProvider } from "tailwindcss-react-native";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
@@ -46,10 +44,9 @@ export default function App() {
           <Stack.Screen name="Yala" component={Yala} />
           <Stack.Screen name="Galle" component={Galle} />
           <Stack.Screen name="Central" component={Central} />
-          
+          <Stack.Screen name="Short" component={Short} />
         </Stack.Navigator>
       </NavigationContainer>
     </TailwindProvider>
   );
 }
-
