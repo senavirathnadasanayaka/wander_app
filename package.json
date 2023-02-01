@@ -2,6 +2,11 @@
   "name": "travel",
   "version": "1.0.0",
   "main": "node_modules/expo/AppEntry.js",
+  "rnpm":{
+  "assets":["../assets/Font"
+]
+},
+
   "scripts": {
     "start": "expo start",
     "android": "expo start --android",

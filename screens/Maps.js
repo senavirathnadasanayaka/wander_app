@@ -87,7 +87,7 @@ export default function App() {
 const renderMarker = () => {
   return INITIAL_MARKER.map((_marker) => (
     <Marker
-      keys={_marker["id"]}
+      // keys={_marker["id"]}
       coordinate = {_marker["region"]}
       title={_marker.title}
       description={_marker["desc"]}
@@ -111,12 +111,12 @@ return (
           ref={ref => myMap = ref}
           className="w-98 h-5/6 mt-20 "
           provider={PROVIDER_GOOGLE}
-          region={{
-            latitude: 7.957,
-            longitude: 80.7603,
-            latitudeDelta: 0.015,
-            longitudeDelta: 0.0121,
-          }}
+          // region={{
+          //   latitude: 7.957,
+          //   longitude: 80.7603,
+          //   latitudeDelta: 0.015,
+          //   longitudeDelta: 0.0121,
+          // }}
         >
          { renderMarker() }
         </MapView>

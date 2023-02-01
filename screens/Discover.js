@@ -18,9 +18,9 @@ const Discover = () => {
 
     return (
       <TailwindProvider>
-        <SafeAreaView>
+        <SafeAreaView className="flex-1 bg-black">
           <View>
-            <Text className="mt-10 text-4 text-3xl">Discover</Text>
+            <Text className="mt-10 text-4 text-3xl text-white">Discover</Text>
           </View>
           <View className="flex-row items-center rounded-xl py-1 px-3 shadow-xl">
             <GooglePlacesAutocomplete
@@ -36,23 +36,25 @@ const Discover = () => {
             />
           </View>
           <TouchableOpacity onPress={() => navigation.navigate("Maps")}>
-            <View className="shadow-md">
-              <Text className="mt-8 text-2xl left-4 ">Maps</Text>
+            <View className="shadow-md bg-lime-400 mt-3">
+              <Text className="mt-10 text-2xl left-4 text-white">Maps</Text>
             </View>
           </TouchableOpacity>
           <TouchableOpacity onPress={() => navigation.navigate("Hotel")}>
-            <View className="shadow-md">
-              <Text className="mt-10 text-2xl left-4">Hotel</Text>
+            <View className="shadow-md bg-lime-400 mt-4">
+              <Text className="mt-10 text-2xl left-4 text-white">Hotel</Text>
             </View>
           </TouchableOpacity>
           <TouchableOpacity onPress={() => navigation.navigate("Area")}>
-            <View className="shadow-md">
-              <Text className="mt-11 text-2xl left-4">Area</Text>
+            <View className="shadow-md bg-lime-400 mt-4">
+              <Text className="mt-10 text-2xl left-4 text-white">Area</Text>
             </View>
           </TouchableOpacity>
           <TouchableOpacity onPress={() => navigation.navigate("Short")}>
-            <View className="shadow-md">
-              <Text className="mt-10 text-2xl left-4">Short Trip</Text>
+            <View className="shadow-md bg-lime-400 mt-4">
+              <Text className="mt-10 text-2xl left-4 text-white">
+                Short Trip
+              </Text>
             </View>
           </TouchableOpacity>
         </SafeAreaView>

@@ -35,7 +35,7 @@ const HomeScreen = () => {
             </Text>
           </View>
           <TouchableOpacity onPress={() => navigation.navigate("Discover")}>
-            <View className="flex-row  rounded-l-full  rounded-r-full border-l-8 border-b-2 border-t-2 border-r-8 border-lime-400 mt-8">
+            <View className="flex-row  rounded-l-full  rounded-r-full border-l-8 border-b-2 border-t-2 border-r-8 border-lime-400 mt-8 bg-amber-600">
               <Image source={Shoes} className=" left-8 w-24 h-24" />
               <Text className="text-2xl mt-6 left-8 text-white">Let's go</Text>
             </View>
