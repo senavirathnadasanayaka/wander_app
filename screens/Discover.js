@@ -3,7 +3,7 @@ import { useNavigation } from "@react-navigation/native";
 import { TailwindProvider } from "tailwindcss-react-native";
 import React, {useLayoutEffect } from "react";
 import { GooglePlacesAutocomplete } from "react-native-google-places-autocomplete";
-import Short from "./Shorttrip/Short";
+
 
 
 const Discover = () => {
@@ -36,22 +36,22 @@ const Discover = () => {
             />
           </View>
           <TouchableOpacity onPress={() => navigation.navigate("Maps")}>
-            <View>
-              <Text className="mt-10 text-2xl left-4">Maps</Text>
+            <View className="shadow-md">
+              <Text className="mt-8 text-2xl left-4 ">Maps</Text>
             </View>
           </TouchableOpacity>
           <TouchableOpacity onPress={() => navigation.navigate("Hotel")}>
-            <View>
+            <View className="shadow-md">
               <Text className="mt-10 text-2xl left-4">Hotel</Text>
             </View>
           </TouchableOpacity>
           <TouchableOpacity onPress={() => navigation.navigate("Area")}>
-            <View>
-              <Text className="mt-10 text-2xl left-4">Area</Text>
+            <View className="shadow-md">
+              <Text className="mt-11 text-2xl left-4">Area</Text>
             </View>
           </TouchableOpacity>
           <TouchableOpacity onPress={() => navigation.navigate("Short")}>
-            <View>
+            <View className="shadow-md">
               <Text className="mt-10 text-2xl left-4">Short Trip</Text>
             </View>
           </TouchableOpacity>
