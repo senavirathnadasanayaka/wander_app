@@ -22,6 +22,7 @@ const Discover = () => {
           <View>
             <Text className="mt-10 text-4 text-3xl text-white">Discover</Text>
           </View>
+          
           <View className="flex-row items-center rounded-xl py-1 px-3 shadow-xl">
             <GooglePlacesAutocomplete
               placeholder="Search"
@@ -36,22 +37,22 @@ const Discover = () => {
             />
           </View>
           <TouchableOpacity onPress={() => navigation.navigate("Maps")}>
-            <View className="shadow-md bg-lime-400 mt-3">
+            <View className="shadow-md bg-teal-700 h-32 mt-4  rounded-xl ">
               <Text className="mt-10 text-2xl left-4 text-white">Maps</Text>
             </View>
           </TouchableOpacity>
           <TouchableOpacity onPress={() => navigation.navigate("Hotel")}>
-            <View className="shadow-md bg-lime-400 mt-4">
+            <View className="shadow-md bg-teal-700 h-32 mt-4 rounded-xl">
               <Text className="mt-10 text-2xl left-4 text-white">Hotel</Text>
             </View>
           </TouchableOpacity>
           <TouchableOpacity onPress={() => navigation.navigate("Area")}>
-            <View className="shadow-md bg-lime-400 mt-4">
+            <View className="shadow-md bg-teal-700 h-32 mt-4 rounded-xl">
               <Text className="mt-10 text-2xl left-4 text-white">Area</Text>
             </View>
           </TouchableOpacity>
           <TouchableOpacity onPress={() => navigation.navigate("Short")}>
-            <View className="shadow-md bg-lime-400 mt-4">
+            <View className="shadow-md bg-teal-700 h-32 mt-4 rounded-xl">
               <Text className="mt-10 text-2xl left-4 text-white">
                 Short Trip
               </Text>

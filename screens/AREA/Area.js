@@ -2,6 +2,7 @@ import { Text, View, ScrollView, TouchableOpacity } from "react-native";
 import { TailwindProvider } from "tailwindcss-react-native";
 import { useNavigation } from "@react-navigation/native";
 import React, { useLayoutEffect } from "react";
+import Icon from "react-native-vector-icons/FontAwesome";
 
 
 const Area = () => {
@@ -16,15 +17,20 @@ const Area = () => {
   return (
     <TailwindProvider>
       <View className="bg-black flex-1">
-        <View className="mt-9">
-          <Text className="text-3xl text-white">Find any areas</Text>
+        <View className="mt-9 flex-row">
+          <View className="mt-2">
+            <TouchableOpacity onPress={() => navigation.navigate("Discover")}>
+              <Icon name="arrow-left" size={30} color="#14532d" />
+            </TouchableOpacity>
+          </View>
+          <Text className="text-2xl text-white left-4">Find any areas</Text>
         </View>
         <ScrollView>
           <View>
             <TouchableOpacity onPress={() => navigation.navigate("Adams")}>
-                <View className="bg-lime-400 mt-4 ">
-                  <Text className="text-2xl text-white mt-11 ">Adams Peak</Text>
-                </View>
+              <View className="bg-lime-400 mt-4 ">
+                <Text className="text-2xl text-white mt-11 ">Adams Peak</Text>
+              </View>
             </TouchableOpacity>
             <TouchableOpacity onPress={() => navigation.navigate("Benthota")}>
               <View className="bg-lime-400 mt-4">

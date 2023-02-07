@@ -4,6 +4,7 @@ import { TailwindProvider } from "tailwindcss-react-native";
 import { createElement, useLayoutEffect } from "react";
 import { useNavigation } from "@react-navigation/native";
 import { SelectList } from "react-native-dropdown-select-list";
+import Icon from "react-native-vector-icons/FontAwesome";
 
 
 const Hotel = () => {
@@ -30,17 +31,21 @@ const Hotel = () => {
        
   return (
     <TailwindProvider>
-      <View className="mt-11">
-        <Text className="text-2xl">Book Hotels</Text>
+      <View className="mt-11 flex-row left-2">
+        <TouchableOpacity onPress={() => navigation.navigate("Discover")}>
+          <View className="mt-2">
+            <Icon name="arrow-left" size={30} color="#14532d" />
+          </View>
+        </TouchableOpacity>
+        <Text className="text-2xl left-2">Book Hotels</Text>
       </View>
+
       <View className="mt-11">
-        
-          <SelectList
-            setSelected={(val) => setSelected(val)}
-            data={data}
-            save="value"
-          />
-        
+        <SelectList
+          setSelected={(val) => setSelected(val)}
+          data={data}
+          save="value"
+        />
       </View>
       <ScrollView>
         <TouchableOpacity onPress={() => navigation.navigate("Central")}>

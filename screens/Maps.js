@@ -1,9 +1,10 @@
 import React from "react";
-import MapView, { PROVIDER_GOOGLE, Marker } from "react-native-maps";
+import MapView, { PROVIDER_GOOGLE, MapMarker } from "react-native-maps";
 import { createElement, useLayoutEffect } from "react";
-import { View, Text, Dimensions, Image } from "react-native";
+import { View, Text, Dimensions, Image, TouchableOpacity } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { TailwindProvider } from "tailwindcss-react-native";
+import Icon from "react-native-vector-icons/FontAwesome";
 
 
 
@@ -86,8 +87,8 @@ export default function App() {
   ]
 const renderMarker = () => {
   return INITIAL_MARKER.map((_marker) => (
-    <Marker
-      // keys={_marker["id"]}
+    <MapMarker
+      keys={_marker["id"]}
       coordinate = {_marker["region"]}
       title={_marker.title}
       description={_marker["desc"]}
@@ -102,13 +103,19 @@ const renderMarker = () => {
 }
 return (
   <TailwindProvider>
-    <View className="bg-blue-800">
-      <View className="mt-12">
-        <Text className="text-3xl text-white">Wonder Maps</Text>
+    <View className=" bg-black">
+      <View className="mt-12 flex-row">
+        <View className="mt-2 left-2 ">
+          <TouchableOpacity onPress={() => navigation.navigate("Discover")}>
+            <Icon name="arrow-left" size={30} color="#14532d" />
+          </TouchableOpacity>
+        </View>
+        <Text className="text-2xl text-white left-4">Wander Maps</Text>
       </View>
+
       <View className="flex-1">
         <MapView
-          ref={ref => myMap = ref}
+          ref={(ref) => (myMap = ref)}
           className="w-98 h-5/6 mt-20 "
           provider={PROVIDER_GOOGLE}
           // region={{
@@ -118,9 +125,9 @@ return (
           //   longitudeDelta: 0.0121,
           // }}
         >
-         { renderMarker() }
+          {renderMarker()}
         </MapView>
       </View>
     </View>
   </TailwindProvider>
-)}
+);}

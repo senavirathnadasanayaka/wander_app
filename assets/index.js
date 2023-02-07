@@ -15,3 +15,4 @@ export { default as Tooth } from "../assets/tooth.jpeg";
 export { default as Wander } from "../assets/wander.png";
 export { default as Maker1 } from "../assets/maker1.png";
 export { default as Maker2 } from "../assets/maker2.png";
+export { default as Home1 } from "../assets/home.jpg";
