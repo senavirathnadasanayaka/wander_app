@@ -3,11 +3,12 @@ import { useNavigation } from "@react-navigation/native";
 import { TailwindProvider } from "tailwindcss-react-native";
 import React, {useLayoutEffect } from "react";
 import { GooglePlacesAutocomplete } from "react-native-google-places-autocomplete";
-
-
+import { createMaterialBottomTabNavigator } from "@react-navigation/material-bottom-tabs";
+import Icon from "react-native-vector-icons/AntDesign";
 
 const Discover = () => {
   const navigation = useNavigation();
+  const Tab = createMaterialBottomTabNavigator();
 
   useLayoutEffect(() => {
     navigation.setOptions({
@@ -19,10 +20,15 @@ const Discover = () => {
     return (
       <TailwindProvider>
         <SafeAreaView className="flex-1 bg-black">
-          <View>
-            <Text className="mt-10 text-4 text-3xl text-white">Discover</Text>
+          <View className="flex-row">
+            <Text className="mt-9 text-4 text-3xl text-white">Discover</Text>
+            <View className=" mt-12 left-44">
+              <TouchableOpacity onPress={() => navigation.navigate("LogScreen")}>
+                <Icon name="user" size={30} color="#14532d" />
+              </TouchableOpacity>
+            </View>
           </View>
-          
+
           <View className="flex-row items-center rounded-xl py-1 px-3 shadow-xl">
             <GooglePlacesAutocomplete
               placeholder="Search"
