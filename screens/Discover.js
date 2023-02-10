@@ -5,6 +5,7 @@ import React, {useLayoutEffect } from "react";
 import { GooglePlacesAutocomplete } from "react-native-google-places-autocomplete";
 import { createMaterialBottomTabNavigator } from "@react-navigation/material-bottom-tabs";
 import Icon from "react-native-vector-icons/AntDesign";
+import LogScreen from './Log/LogScreen'
 
 const Discover = () => {
   const navigation = useNavigation();
@@ -20,6 +21,7 @@ const Discover = () => {
     return (
       <TailwindProvider>
         <SafeAreaView className="flex-1 bg-black">
+        
           <View className="flex-row">
             <Text className="mt-9 text-4 text-3xl text-white">Discover</Text>
             <View className=" mt-12 left-44">

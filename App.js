@@ -19,7 +19,7 @@ import Adams from "./screens/AREA/Adams";
 import Discover from "./screens/Discover";
 import Central from "./screens/Hotels/Central";
 import Short from "./screens/Shorttrip/Short";
-import LogScreen from "./screens/LogScreen";
+import LogScreen from "./screens/Log/LogScreen";
 
 
 const Stack = createNativeStackNavigator();
