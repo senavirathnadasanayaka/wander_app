@@ -15,7 +15,7 @@ export default function App() {
     navigation.setOptions({
       headerShown: false,
     });
-  }, []);
+  }, [navigation]);
 
   const INITIAL_MARKER = [
     {
@@ -88,7 +88,7 @@ export default function App() {
 const renderMarker = () => {
   return INITIAL_MARKER.map((_marker) => (
     <MapMarker
-      keys={_marker["id"]}
+      key={_marker["id"]}
       coordinate = {_marker["region"]}
       title={_marker.title}
       description={_marker["desc"]}
@@ -96,7 +96,7 @@ const renderMarker = () => {
          myMap.fitToCoordinates([_marker["region"]], {
           edgePadding:{top: 10, bottom:10, left:10, right:10},
           animated: true
-         })
+         });
       }}
     />
   ));
@@ -110,13 +110,18 @@ return (
             <Icon name="arrow-left" size={30} color="#14532d" />
           </TouchableOpacity>
         </View>
-        <Text className="text-2xl text-white left-4">Wander Maps</Text>
+        <View>
+          <Text className="text-4xl text-white left-5 mt-3">Wander Maps</Text>
+        </View>
+        <View className="mt-9 right-48">
+          <Text className="text-3xl text-white  mt-5 ">Watch best location and select your Trip  </Text>
+        </View>
       </View>
 
       <View className="flex-1">
         <MapView
           ref={(ref) => (myMap = ref)}
-          className="w-98 h-5/6 mt-20 "
+          className="w-98 h-5/6 mt-14 "
           provider={PROVIDER_GOOGLE}
           // region={{
           //   latitude: 7.957,
@@ -130,4 +135,4 @@ return (
       </View>
     </View>
   </TailwindProvider>
-);}
+)}

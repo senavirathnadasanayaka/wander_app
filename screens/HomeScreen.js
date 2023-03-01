@@ -28,21 +28,21 @@ const HomeScreen = () => {
         <View className="flex-1 ">
           <StatusBar translucent backgroundColor={"rgba(0,0,0,0)"} />
           <ImageBackground source={Home1} className="flex-1">
-            <Text className="m-20 text-white text-4xl left-11">Wander</Text>
-            <Text className=" text-white text-2xl mt-48 left-2">
+            <Text className="m-20 text-white text-7xl text-center">Wander</Text>
+            <Text className=" text-white text-5xl mt-48 left-2">
               Discover World
             </Text>
-            <Text className=" text-white text-2xl left-2">with us</Text>
+            <Text className=" text-white text-5xl left-3">with us</Text>
 
-            <Text className="text-white left-3 mt-13">
-              Take a journey in to your self..... spread your wings of
+            <Text className="text-white left-3 mt-13 text-3xl">
+              Take a journey in to your self spread your wings of
               freedom.....wander often,wonder always
             </Text>
             <TouchableOpacity onPress={() => navigation.navigate("Discover")}>
               <View>
-                <View className=" bg-teal-700 mt-8 h-20 w-28 rounded-lg left-4 ">
+                <View className=" bg-teal-700 mt-8 h-16 w-28 rounded-tl-lg rounded-br-lg left-4 ">
                   <View>
-                    <Text className=" text-white border-spacing-7-white left-2 mt-5 text-base">
+                    <Text className=" text-white mt-4 text-center text-4xl">
                       Let's Go
                     </Text>
                   </View>

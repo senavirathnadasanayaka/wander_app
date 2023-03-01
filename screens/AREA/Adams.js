@@ -8,7 +8,7 @@ const Adams = () => {
       <ImageBackground source={Phone1} className="flex-1">
         <View>
           <View>
-            <Text className="left-3 text-white ">
+            <Text className="left-2 text-white text-3xl ">
               Adams Peak, also known as Sri Pada, is a mountain located in
               central Sri Lanka. It is a popular destination for both local and
               foreign tourists, and is considered a sacred site by Buddhists,

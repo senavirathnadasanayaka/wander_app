@@ -1,34 +1,44 @@
-import { Text, View, TouchableOpacity, ScrollView } from "react-native";
-import React from 'react';
+import {
+  Text,
+  View,
+  ScrollView,
+  TextInput,
+  TouchableOpacity
+} from "react-native";
+import React from "react";
 import { TailwindProvider } from "tailwindcss-react-native";
 import { createElement, useLayoutEffect } from "react";
 import { useNavigation } from "@react-navigation/native";
 import { SelectList } from "react-native-dropdown-select-list";
 import Icon from "react-native-vector-icons/FontAwesome";
 
-
 const Hotel = () => {
-    const navigation = useNavigation();
-       useLayoutEffect(() => {
-         navigation.setOptions({
-           headerShown: false,
-         });
-       }, []);
+  const navigation = useNavigation();
+  useLayoutEffect(() => {
+    navigation.setOptions({
+      headerShown: false,
+    });
+  }, []);
 
-  const [selected, setSelected] = React.useState("");
-  
+
+  const [search, setSearch] = React.useState("");
+
   const data = [
-    { key: "1", value: "Central", disabled: true },
+    { key: "1", value: "Central",  },
     { key: "2", value: "Eastern" },
     { key: "3", value: "North Central" },
-    { key: "4", value: " Northern", disabled: true },
+    { key: "4", value: " Northern", },
     { key: "5", value: "North Western" },
     { key: "6", value: "Sabaragamuwa" },
     { key: "7", value: "Southern" },
     { key: "8", value: "Uva" },
     { key: "9", value: "Western" },
   ];
-       
+
+  const filteredData = data.filter((item) =>
+    item.value.toLowerCase().includes(search.toLowerCase())
+  );
+
   return (
     <TailwindProvider>
       <View className="mt-11 flex-row left-2">
@@ -41,46 +51,26 @@ const Hotel = () => {
       </View>
 
       <View className="mt-11">
-        <SelectList
-          setSelected={(val) => setSelected(val)}
-          data={data}
-          save="value"
+        <TextInput
+          placeholder="Search"
+          className="flex-row items-center rounded-xl py-2 px-4 shadow-black bg-slate-200"
+          onChangeText={(text) => setSearch(text)}
         />
       </View>
-      <ScrollView>
-        <TouchableOpacity onPress={() => navigation.navigate("Central")}>
-          <View className="mt-11">
-            <Text> Central</Text>
-          </View>
-        </TouchableOpacity>
-        <View className="mt-11">
-          <Text> Eastern</Text>
-        </View>
-        <View className="mt-11">
-          <Text>North Central</Text>
-        </View>
-        <View className="mt-11">
-          <Text> Northern</Text>
-        </View>
-        <View className="mt-11">
-          <Text> North Western</Text>
-        </View>
-        <View className="mt-11">
-          <Text> Sabaragamuwa</Text>
-        </View>
-        <View className="mt-11">
-          <Text> Southern</Text>
-        </View>
-        <View className="mt-11">
-          <Text> Uva</Text>
-        </View>
-        <View className="mt-11">
-          <Text> Western</Text>
-        </View>
-      </ScrollView>
+      <View className="flex-1 left-4">
+        {filteredData.map((item) => (
+          <TouchableOpacity
+            key={item.key}
+            onPress={() => navigation.navigate("Central", { item })}
+          >
+            <View className="mt-11">
+              <Text>{item.value}</Text>
+            </View>
+          </TouchableOpacity>
+        ))}
+      </View>
     </TailwindProvider>
   );
 };
 
 export default Hotel;
-

@@ -17,6 +17,7 @@
     "@fortawesome/fontawesome-svg-core": "^6.2.1",
     "@fortawesome/free-solid-svg-icons": "^6.2.1",
     "@fortawesome/react-native-fontawesome": "^0.3.0",
+    "@react-native-async-storage/async-storage": "~1.17.3",
     "@react-navigation/bottom-tabs": "^6.5.2",
     "@react-navigation/material-bottom-tabs": "^6.2.12",
     "@react-navigation/native": "^6.1.1",
@@ -24,6 +25,7 @@
     "expo": "^47.0.13",
     "expo-cli": "^6.2.1",
     "expo-status-bar": "~1.4.2",
+    "firebase": "^8.2.3",
     "lottie-ios": "^3.4.0",
     "lottie-react-native": "5.1.4",
     "nativewind": "^2.0.11",
@@ -45,6 +47,7 @@
     "react-native-vector-icons": "^9.2.0",
     "react-native-video": "^5.2.1",
     "react-native-web": "~0.18.9",
+    "rive-react-native": "^3.0.41",
     "tailwindcss-react-native": "^1.7.10"
   },
   "devDependencies": {

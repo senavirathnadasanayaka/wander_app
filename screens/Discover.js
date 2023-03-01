@@ -1,11 +1,20 @@
-import { SafeAreaView, Text, View, TouchableOpacity } from "react-native";
+import {
+  SafeAreaView,
+  Text,
+  View,
+  TouchableOpacity,
+  ImageBackground,
+} from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { TailwindProvider } from "tailwindcss-react-native";
 import React, {useLayoutEffect } from "react";
 import { GooglePlacesAutocomplete } from "react-native-google-places-autocomplete";
 import { createMaterialBottomTabNavigator } from "@react-navigation/material-bottom-tabs";
 import Icon from "react-native-vector-icons/AntDesign";
-import LogScreen from './Log/LogScreen'
+import { Shoes, Wander, Tiger } from "../assets/index";
+
+
+
 
 const Discover = () => {
   const navigation = useNavigation();
@@ -21,17 +30,18 @@ const Discover = () => {
     return (
       <TailwindProvider>
         <SafeAreaView className="flex-1 bg-black">
-        
           <View className="flex-row">
-            <Text className="mt-9 text-4 text-3xl text-white">Discover</Text>
-            <View className=" mt-12 left-44">
-              <TouchableOpacity onPress={() => navigation.navigate("LogScreen")}>
+            <Text className="mt-9 text-4 text-4xl text-white">Discover</Text>
+            <View className=" mt-9 left-64">
+              <TouchableOpacity
+                onPress={() => navigation.navigate("Login")}
+              >
                 <Icon name="user" size={30} color="#14532d" />
               </TouchableOpacity>
             </View>
           </View>
 
-          <View className="flex-row items-center rounded-xl py-1 px-3 shadow-xl">
+          <View className="flex-row items-center rounded-xl py-1 px-3 shadow-xl mt-3">
             <GooglePlacesAutocomplete
               placeholder="Search"
               onPress={(data, details = null) => {
@@ -45,25 +55,49 @@ const Discover = () => {
             />
           </View>
           <TouchableOpacity onPress={() => navigation.navigate("Maps")}>
-            <View className="shadow-md bg-teal-700 h-32 mt-4  rounded-xl ">
-              <Text className="mt-10 text-2xl left-4 text-white">Maps</Text>
+            <View>
+              <ImageBackground
+                source={Tiger}
+                style={{ height: 150, marginVertical: 10 }}
+                imageStyle={{ borderRadius: 10 }}
+              >
+                <Text className="mt-14 px-4 text-white text-5xl">Maps</Text>
+              </ImageBackground>
             </View>
           </TouchableOpacity>
           <TouchableOpacity onPress={() => navigation.navigate("Hotel")}>
-            <View className="shadow-md bg-teal-700 h-32 mt-4 rounded-xl">
-              <Text className="mt-10 text-2xl left-4 text-white">Hotel</Text>
+            <View>
+              <ImageBackground
+                source={Tiger}
+                style={{ height: 150, marginVertical: 10 }}
+                imageStyle={{ borderRadius: 10 }}
+              >
+                <Text className="mt-14 px-4 text-white text-5xl">Hotels</Text>
+              </ImageBackground>
             </View>
           </TouchableOpacity>
           <TouchableOpacity onPress={() => navigation.navigate("Area")}>
-            <View className="shadow-md bg-teal-700 h-32 mt-4 rounded-xl">
-              <Text className="mt-10 text-2xl left-4 text-white">Area</Text>
+            <View>
+              <ImageBackground
+                source={Tiger}
+                style={{ height: 150, marginVertical: 10 }}
+                imageStyle={{ borderRadius: 10 }}
+              >
+                <Text className="mt-14 px-4 text-white text-5xl">Areas</Text>
+              </ImageBackground>
             </View>
           </TouchableOpacity>
           <TouchableOpacity onPress={() => navigation.navigate("Short")}>
-            <View className="shadow-md bg-teal-700 h-32 mt-4 rounded-xl">
-              <Text className="mt-10 text-2xl left-4 text-white">
-                Short Trip
-              </Text>
+            <View>
+              <ImageBackground
+                source={Tiger}
+                style={{ height: 150, marginVertical: 10 }}
+                imageStyle={{ borderRadius: 10 }}
+              >
+                <Text className="mt-14 px-4 text-white text-5xl">
+                  Short Trip
+                </Text>
+              </ImageBackground>
             </View>
           </TouchableOpacity>
         </SafeAreaView>
