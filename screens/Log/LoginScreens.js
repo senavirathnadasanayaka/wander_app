@@ -9,6 +9,7 @@ import { auth } from "../../firebase";
 
 
 
+
 const LoginScreens = () => {
   const navigation = useNavigation();
  const [email, setEmail] = useState("");
@@ -40,7 +41,6 @@ const LoginScreens = () => {
       headerShown: false,
     });
   }, []);
-
 
 
 

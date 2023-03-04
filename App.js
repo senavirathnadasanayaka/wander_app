@@ -17,7 +17,6 @@ import Town from "./screens/AREA/Town";
 import Galle from "./screens/AREA/Galle";
 import Adams from "./screens/AREA/Adams";
 import Discover from "./screens/Discover";
-import Central from "./screens/Hotels/Central";
 import Short from "./screens/Shorttrip/Short";;
 import LoginScreens from "./screens/Log/LoginScreens";
 
@@ -48,7 +47,6 @@ export default function App() {
           <Stack.Screen name="Town" component={Town} />
           <Stack.Screen name="Yala" component={Yala} />
           <Stack.Screen name="Galle" component={Galle} />
-          <Stack.Screen name="Central" component={Central} />
           <Stack.Screen name="Short" component={Short} />
           <Stack.Screen name="Login" component={LoginScreens} />
         </Stack.Navigator>

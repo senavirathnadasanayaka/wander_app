@@ -85,6 +85,7 @@ export default function App() {
       desc: "dsfdgh",
     },
   ]
+
 const renderMarker = () => {
   return INITIAL_MARKER.map((_marker) => (
     <MapMarker
@@ -94,7 +95,7 @@ const renderMarker = () => {
       description={_marker["desc"]}
       onPress={() => {
          myMap.fitToCoordinates([_marker["region"]], {
-          edgePadding:{top: 10, bottom:10, left:10, right:10},
+          edgePadding:{top: 50, bottom:50, left:50, right:50},
           animated: true
          });
       }}
@@ -119,20 +120,20 @@ return (
       </View>
 
       <View className="flex-1">
-        <MapView
-          ref={(ref) => (myMap = ref)}
-          className="w-98 h-5/6 mt-14 "
-          provider={PROVIDER_GOOGLE}
-          // region={{
-          //   latitude: 7.957,
-          //   longitude: 80.7603,
-          //   latitudeDelta: 0.015,
-          //   longitudeDelta: 0.0121,
-          // }}
-        >
-          {renderMarker()}
-        </MapView>
-      </View>
+  <MapView
+  ref={(ref) => (myMap = ref)}
+  className="w-98 h-5/6 mt-14"
+  provider={PROVIDER_GOOGLE}
+  region={{
+    latitude: 7.8731,
+    longitude: 80.7718,
+    latitudeDelta: 8,
+    longitudeDelta: 8,
+  }}
+>
+  {renderMarker()}
+</MapView>
+</View>
     </View>
   </TailwindProvider>
 )}
