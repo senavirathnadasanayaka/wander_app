@@ -1,6 +1,6 @@
 import React from "react";
 import MapView, { PROVIDER_GOOGLE, MapMarker } from "react-native-maps";
-import { createElement, useLayoutEffect } from "react";
+import { useLayoutEffect } from "react";
 import { View, Text, Dimensions, Image, TouchableOpacity } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { TailwindProvider } from "tailwindcss-react-native";

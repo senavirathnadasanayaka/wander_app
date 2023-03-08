@@ -49,6 +49,7 @@ export default function App() {
           <Stack.Screen name="Galle" component={Galle} />
           <Stack.Screen name="Short" component={Short} />
           <Stack.Screen name="Login" component={LoginScreens} />
+       
         </Stack.Navigator>
       </NavigationContainer>
     </TailwindProvider>

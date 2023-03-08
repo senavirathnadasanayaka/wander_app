@@ -21,7 +21,7 @@ import { TailwindProvider } from "tailwindcss-react-native";
 const {width} = Dimensions.get('screen');
 const cardWidth = width / 1.8;
 
-const Short = () => {
+const Hotel = () => {
   const navigation = useNavigation();
   useLayoutEffect(() => {
     navigation.setOptions({
@@ -87,7 +87,7 @@ const Short = () => {
       <TouchableOpacity
         disabled={activeCardIndex != index}
         activeOpacity={1}
-        onPress={() => navigation.navigate('DetailsScreen', hotel)}>
+        onPress={() => navigation.navigate("Book", hotel)}>
         <Animated.View style={{...style.card, transform: [{scale}]}}>
           <Animated.View style={{...style.cardOverLay, opacity}} />
           <View style={style.priceTag}>
@@ -298,4 +298,4 @@ const style = StyleSheet.create({
   },
 });
 
-export default Short;
+export default Hotel;
