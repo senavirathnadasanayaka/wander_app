@@ -123,7 +123,7 @@ const Hotel = () => {
                 <Icon name="star" size={15} color={COLORS.orange} />
                 <Icon name="star" size={15} color={COLORS.grey} />
               </View>
-              <Text style={{fontSize: 10, color: COLORS.grey}}>365reviews</Text>
+              <Text style={{fontSize: 10, color: COLORS.grey}}>165reviews</Text>
             </View>
           </View>
         </Animated.View>

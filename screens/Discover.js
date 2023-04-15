@@ -4,6 +4,7 @@ import {
   View,
   TouchableOpacity,
   ImageBackground,
+  ScrollView,
 } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { TailwindProvider } from "tailwindcss-react-native";
@@ -33,73 +34,66 @@ const Discover = () => {
           <View className="flex-row">
             <Text className="mt-9 text-4 text-4xl text-white">Discover</Text>
             <View className=" mt-9 left-64">
-              <TouchableOpacity
-                onPress={() => navigation.navigate("Login")}
-              >
+              <TouchableOpacity onPress={() => navigation.navigate("Login")}>
                 <Icon name="user" size={30} color="#14532d" />
               </TouchableOpacity>
             </View>
           </View>
 
-          <View className="flex-row items-center rounded-xl py-1 px-3 shadow-xl mt-3">
-            <GooglePlacesAutocomplete
-              placeholder="Search"
-              onPress={(data, details = null) => {
-                // 'details' is provided when fetchDetails = true
-                console.log(data, details);
-              }}
-              query={{
-                key: "AIzaSyCMtICSGaFrzOwXVFa8Tgp_Drsgut0Zmec",
-                language: "en",
-              }}
-            />
-          </View>
-          <TouchableOpacity onPress={() => navigation.navigate("Maps")}>
+          <ScrollView>
             <View>
-              <ImageBackground
-                source={Tiger}
-                style={{ height: 150, marginVertical: 10 }}
-                imageStyle={{ borderRadius: 10 }}
-              >
-                <Text className="mt-14 px-4 text-white text-5xl">Maps</Text>
-              </ImageBackground>
+              <TouchableOpacity onPress={() => navigation.navigate("Maps")}>
+                <View>
+                  <ImageBackground
+                    source={Tiger}
+                    style={{ height: 150, marginVertical: 10 }}
+                    imageStyle={{ borderRadius: 10 }}
+                  >
+                    <Text className="mt-14 px-4 text-white text-5xl">Maps</Text>
+                  </ImageBackground>
+                </View>
+              </TouchableOpacity>
+              <TouchableOpacity onPress={() => navigation.navigate("Hotel")}>
+                <View>
+                  <ImageBackground
+                    source={Tiger}
+                    style={{ height: 150, marginVertical: 10 }}
+                    imageStyle={{ borderRadius: 10 }}
+                  >
+                    <Text className="mt-14 px-4 text-white text-5xl">
+                      Hotels
+                    </Text>
+                  </ImageBackground>
+                </View>
+              </TouchableOpacity>
+              <TouchableOpacity onPress={() => navigation.navigate("Area")}>
+                <View>
+                  <ImageBackground
+                    source={Tiger}
+                    style={{ height: 150, marginVertical: 10 }}
+                    imageStyle={{ borderRadius: 10 }}
+                  >
+                    <Text className="mt-14 px-4 text-white text-5xl">
+                      Areas
+                    </Text>
+                  </ImageBackground>
+                </View>
+              </TouchableOpacity>
+              <TouchableOpacity onPress={() => navigation.navigate("Short")}>
+                <View>
+                  <ImageBackground
+                    source={Tiger}
+                    style={{ height: 150, marginVertical: 10 }}
+                    imageStyle={{ borderRadius: 10 }}
+                  >
+                    <Text className="mt-14 px-4 text-white text-5xl">
+                      Short Trip
+                    </Text>
+                  </ImageBackground>
+                </View>
+              </TouchableOpacity>
             </View>
-          </TouchableOpacity>
-          <TouchableOpacity onPress={() => navigation.navigate("Hotel")}>
-            <View>
-              <ImageBackground
-                source={Tiger}
-                style={{ height: 150, marginVertical: 10 }}
-                imageStyle={{ borderRadius: 10 }}
-              >
-                <Text className="mt-14 px-4 text-white text-5xl">Hotels</Text>
-              </ImageBackground>
-            </View>
-          </TouchableOpacity>
-          <TouchableOpacity onPress={() => navigation.navigate("Area")}>
-            <View>
-              <ImageBackground
-                source={Tiger}
-                style={{ height: 150, marginVertical: 10 }}
-                imageStyle={{ borderRadius: 10 }}
-              >
-                <Text className="mt-14 px-4 text-white text-5xl">Areas</Text>
-              </ImageBackground>
-            </View>
-          </TouchableOpacity>
-          <TouchableOpacity onPress={() => navigation.navigate("Short")}>
-            <View>
-              <ImageBackground
-                source={Tiger}
-                style={{ height: 150, marginVertical: 10 }}
-                imageStyle={{ borderRadius: 10 }}
-              >
-                <Text className="mt-14 px-4 text-white text-5xl">
-                  Short Trip
-                </Text>
-              </ImageBackground>
-            </View>
-          </TouchableOpacity>
+          </ScrollView>
         </SafeAreaView>
       </TailwindProvider>
     );
