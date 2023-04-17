@@ -36,6 +36,7 @@ const Hotel = () => {
 
   const CategoryList = ({navigation}) => {
     return (
+      
       <View style={style.categoryListContainer}>
         {categories.map((item, index) => (
           <TouchableOpacity
@@ -84,50 +85,69 @@ const Hotel = () => {
       outputRange: [0.8, 1, 0.8],
     });
     return (
-      <TouchableOpacity
-        disabled={activeCardIndex != index}
-        activeOpacity={1}
-        onPress={() => navigation.navigate("Book", hotel)}>
-        <Animated.View style={{...style.card, transform: [{scale}]}}>
-          <Animated.View style={{...style.cardOverLay, opacity}} />
-          <View style={style.priceTag}>
-            <Text
-              style={{color: COLORS.white, fontSize: 20, fontWeight: 'bold'}}>
-              ${hotel.price}
-            </Text>
-          </View>
-          <Image source={hotel.image} style={style.cardImage} />
-          <View style={style.cardDetails}>
-            <View
-              style={{flexDirection: 'row', justifyContent: 'space-between'}}>
-              <View>
-                <Text style={{fontWeight: 'bold', fontSize: 17}}>
-                  {hotel.name}
-                </Text>
-                <Text style={{color: COLORS.grey, fontSize: 12}}>
-                  {hotel.location}
+      <TailwindProvider>
+        <TouchableOpacity
+          disabled={activeCardIndex != index}
+          activeOpacity={1}
+          onPress={() => navigation.navigate("Book", hotel)}
+        >
+          <Animated.View style={{ ...style.card, transform: [{ scale }] }}>
+            <Animated.View style={{ ...style.cardOverLay, opacity }} />
+            <View style={style.priceTag}>
+              <Text
+                style={{
+                  color: COLORS.white,
+                  fontSize: 20,
+                  fontWeight: "bold",
+                }}
+              >
+                ${hotel.price}
+              </Text>
+            </View>
+            <Image source={hotel.image} style={style.cardImage} />
+            <View style={style.cardDetails}>
+              <View
+                style={{
+                  flexDirection: "row",
+                  justifyContent: "space-between",
+                }}
+              >
+                <View>
+                  <Text style={{ fontWeight: "bold", fontSize: 17 }}>
+                    {hotel.name}
+                  </Text>
+                  <Text style={{ color: COLORS.grey, fontSize: 12 }}>
+                    {hotel.location}
+                  </Text>
+                </View>
+                <TouchableOpacity onPress={() => navigation.navigate("Maps")}>
+                  <View className="right-2">
+                    <Icon name="room" size={30} color={COLORS.primary} />
+                  </View>
+                </TouchableOpacity>
+              </View>
+              <View
+                style={{
+                  flexDirection: "row",
+                  justifyContent: "space-between",
+                  marginTop: 10,
+                }}
+              >
+                <View style={{ flexDirection: "row" }}>
+                  <Icon name="star" size={15} color={COLORS.orange} />
+                  <Icon name="star" size={15} color={COLORS.orange} />
+                  <Icon name="star" size={15} color={COLORS.orange} />
+                  <Icon name="star" size={15} color={COLORS.orange} />
+                  <Icon name="star" size={15} color={COLORS.grey} />
+                </View>
+                <Text style={{ fontSize: 10, color: COLORS.grey }}>
+                  165reviews
                 </Text>
               </View>
-              <Icon name="bookmark-border" size={26} color={COLORS.primary} />
             </View>
-            <View
-              style={{
-                flexDirection: 'row',
-                justifyContent: 'space-between',
-                marginTop: 10,
-              }}>
-              <View style={{flexDirection: 'row'}}>
-                <Icon name="star" size={15} color={COLORS.orange} />
-                <Icon name="star" size={15} color={COLORS.orange} />
-                <Icon name="star" size={15} color={COLORS.orange} />
-                <Icon name="star" size={15} color={COLORS.orange} />
-                <Icon name="star" size={15} color={COLORS.grey} />
-              </View>
-              <Text style={{fontSize: 10, color: COLORS.grey}}>165reviews</Text>
-            </View>
-          </View>
-        </Animated.View>
-      </TouchableOpacity>
+          </Animated.View>
+        </TouchableOpacity>
+      </TailwindProvider>
     );
   };
   const TopHotelCard = ({hotel}) => {

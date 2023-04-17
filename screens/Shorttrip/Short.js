@@ -1,34 +1,56 @@
-import { Text, View, TouchableOpacity } from "react-native";
-import React from 'react';
-import { useNavigation } from "@react-navigation/native";
-import { useLayoutEffect } from "react";
-import { TailwindProvider } from "tailwindcss-react-native";
-import Icon from "react-native-vector-icons/FontAwesome";
+import {
+  add,
+  Canvas,
+  Circle,
+  LinearGradient,
+  vec,
+  sub,
+  Fill,
+  useLoop,
+  mix,
+  BackdropFilter,
+  Blur,
+  useComputedValue,
+} from "@shopify/react-native-skia";
+import React, { useMemo } from "react";
+import { useWindowDimensions } from "react-native";
 
+export const Short = () => {
+  const { width, height } = useWindowDimensions();
+  const c = vec(width / 2, height / 2);
+  const r = c.x - 32;
+  const rect = useMemo(
+    () => ({ x: 0, y: c.y, width, height: c.y }),
+    [c.y, width]
+  );
 
-const Short = () => {
-  const navigation = useNavigation();
-  useLayoutEffect(() => {
-    navigation.setOptions({
-      headerShown: false,
-    });
-  }, []); 
+  const progress = useLoop({ duration: 2000 });
+  const start = useComputedValue(
+    () => sub(c, vec(0, mix(progress.current, r, r / 2))),
+    [progress]
+  );
+  const end = useComputedValue(
+    () => add(c, vec(0, mix(progress.current, r, r / 2))),
+    []
+  );
+  const radius = useComputedValue(
+    () => mix(progress.current, r, r / 2),
+    [progress]
+  );
 
   return (
-    <TailwindProvider>
-      <View className=" bg-black flex-1">
-        <View className="mt-9 flex-row">
-          <View className="mt-2 left-2">
-            <TouchableOpacity onPress={() => navigation.navigate("Discover")}>
-              <Icon name="arrow-left" size={30} color="#14532d" />
-            </TouchableOpacity>
-          </View>
-          <Text className="text-2xl text-white left-4">Short Trip</Text>
-        </View>
-      </View>
-    </TailwindProvider>
+    <Canvas style={{ flex: 1 }}>
+      <Fill color="black" />
+      <Circle c={c} r={radius}>
+        <LinearGradient
+          start={start}
+          end={end}
+          colors={["#FFF723", "#E70696"]}
+        />
+      </Circle>
+      <BackdropFilter filter={<Blur blur={10} />} clip={rect}>
+        <Fill color="rgba(0, 0, 0, 0.3)" />
+      </BackdropFilter>
+    </Canvas>
   );
 };
-
-export default Short;
-

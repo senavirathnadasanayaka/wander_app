@@ -18,3 +18,4 @@ export { default as Maker2 } from "../assets/maker2.png";
 export { default as Home1 } from "../assets/home.jpg";
 export { default as log } from "../assets/og.png";
 export { default as User } from "../assets/user.png";
+export { default as Db } from "../assets/Of.png";
