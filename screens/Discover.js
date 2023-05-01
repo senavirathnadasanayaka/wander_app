@@ -13,7 +13,7 @@ import React, {useLayoutEffect } from "react";
 import { GooglePlacesAutocomplete } from "react-native-google-places-autocomplete";
 import { createMaterialBottomTabNavigator } from "@react-navigation/material-bottom-tabs";
 import Icon from "react-native-vector-icons/AntDesign";
-import { Shoes, Wander, Tiger, Db } from "../assets/index";
+import { Shoes, Wander, Map1,Tiger, Db,Travel2, Area1} from "../assets/index";
 
 
 
@@ -35,7 +35,7 @@ const Discover = () => {
           <ImageBackground source={Db}>
             <View className="flex-row">
               <Text className="mt-9 text-4 text-4xl text-white">Discover</Text>
-              <View className=" mt-9 left-64">
+              <View className=" mt-12 left-64">
                 <TouchableOpacity onPress={() => navigation.navigate("Login")}>
                   <Icon name="user" size={30} color="#14532d" />
                 </TouchableOpacity>
@@ -47,8 +47,8 @@ const Discover = () => {
                   <TouchableOpacity onPress={() => navigation.navigate("Maps")}>
                     <View>
                       <ImageBackground
-                        source={Tiger}
-                        style={{ height: 150, marginVertical: 10 }}
+                        source={Map1}
+                        style={{ height: 159 }}
                         imageStyle={{ borderRadius: 10 }}
                       >
                         <Text className="mt-14 px-4 text-white text-5xl">
@@ -62,8 +62,8 @@ const Discover = () => {
                   >
                     <View>
                       <ImageBackground
-                        source={Tiger}
-                        style={{ height: 150, marginVertical: 10 }}
+                        source={Travel2}
+                        style={{ height: 159}}
                         imageStyle={{ borderRadius: 10 }}
                       >
                         <Text className="mt-14 px-4 text-white text-5xl">
@@ -75,8 +75,8 @@ const Discover = () => {
                   <TouchableOpacity onPress={() => navigation.navigate("Area")}>
                     <View>
                       <ImageBackground
-                        source={Tiger}
-                        style={{ height: 150, marginVertical: 10 }}
+                        source={Area1}
+                        style={{ height: 159}}
                         imageStyle={{ borderRadius: 10 }}
                       >
                         <Text className="mt-14 px-4 text-white text-5xl">
@@ -91,8 +91,8 @@ const Discover = () => {
                     <View>
                       <ImageBackground
                         source={Tiger}
-                        style={{ height: 150, marginVertical: 10 }}
-                        imageStyle={{ borderRadius: 10 }}
+                        style={{ height: 159}}
+                        imageStyle={{ borderRadius: 10}}
                       >
                         <Text className="mt-14 px-4 text-white text-5xl">
                           Short Trip

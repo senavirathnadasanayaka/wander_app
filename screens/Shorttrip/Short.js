@@ -1,54 +1,92 @@
-import React, { useState, useEffect } from 'react';
-import { View, Text } from 'react-native';
-import MapView, { Marker } from 'react-native-maps';
-import { API_KEY } from 'your_api_key';
 
 
-const Short = () => {
-  const [review, setReview] = useState(null);
-  const { latitude, longitude } = location;
+import React, { useState } from 'react';
+import { Text, TextInput, View, TouchableOpacity } from 'react-native';
+import { TailwindProvider } from 'tailwindcss-react-native';
+import { useNavigation } from '@react-navigation/native';
+import Icon from 'react-native-vector-icons/FontAwesome';
 
-  useEffect(() => {
-    fetch(`https://api.yelp.com/v3/businesses/search?latitude=${latitude}&longitude=${longitude}`, {
-      headers: {
-        Authorization: `Bearer ${API_KEY}`,
-      },
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        setReview(data.businesses[0]);
-      })
-      .catch((error) => console.error(error));
-  }, [latitude, longitude]);
+const Short= () => {
+  const navigation = useNavigation();
+
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+
+  const handleSignIn = () => {
+    // handle sign in logic here
+  };
+
   return (
-    <View style={{ flex: 1 }}>
-    <MapView
-      style={{ flex: 1 }}
-      initialRegion={{
-        latitude: latitude,
-        longitude: longitude,
-        latitudeDelta: 0.0922,
-        longitudeDelta: 0.0421,
-      }}
-    >
-      <Marker
-        coordinate={{ latitude: latitude, longitude: longitude }}
-        title={review?.name}
-        description={review?.categories.map((category) => category.title).join(', ')}
-      />
-    </MapView>
-    {review && (
-      <View style={{ backgroundColor: 'white', padding: 10 }}>
-        <Text style={{ fontWeight: 'bold' }}>{review.name}</Text>
-        <Text>{review.location.address1}</Text>
-        <Text>{review.location.city}, {review.location.state} {review.location.zip_code}</Text>
-        <Text>{review.phone}</Text>
-        <Text>{review.rating} stars ({review.review_count} reviews)</Text>
+    <TailwindProvider>
+      <View className="flex-1 items-center justify-center bg-black">
+        <TouchableOpacity onPress={() => navigation.navigate('Welcome')}>
+          <Icon name="arrow-left" size={30} color="#14532d" />
+        </TouchableOpacity>
+        <Text className="text-4xl text-white mt-5">Sign In</Text>
+        <View className="mt-10">
+          <TextInput
+            placeholder="Email"
+            placeholderTextColor="#C4C4C4"
+            style={{
+              backgroundColor: '#3B3B3B',
+              width: 300,
+              height: 50,
+              borderRadius: 10,
+              paddingLeft: 20,
+              fontSize: 20,
+              color: '#FFFFFF',
+              marginBottom: 20,
+            }}
+            onChangeText={(text) => setEmail(text)}
+            value={email}
+          />
+          <TextInput
+            placeholder="Password"
+            placeholderTextColor="#C4C4C4"
+            style={{
+              backgroundColor: '#3B3B3B',
+              width: 300,
+              height: 50,
+              borderRadius: 10,
+              paddingLeft: 20,
+              fontSize: 20,
+              color: '#FFFFFF',
+              marginBottom: 20,
+            }}
+            onChangeText={(text) => setPassword(text)}
+            value={password}
+            secureTextEntry={true}
+          />
+          <TouchableOpacity
+            style={{
+              backgroundColor: '#14532d',
+              width: 300,
+              height: 50,
+              borderRadius: 10,
+              alignItems: 'center',
+              justifyContent: 'center',
+            }}
+            onPress={handleSignIn}
+          >
+            <Text className="text-xl text-white">Sign In</Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={{
+              marginTop: 10,
+              alignItems: 'center',
+              justifyContent: 'center',
+            }}
+            onPress={() => navigation.navigate('SignUp')}
+          >
+            <Text className="text-lg text-white">
+              Don't have an account? Sign Up
+            </Text>
+          </TouchableOpacity>
+        </View>
       </View>
-    )}
-  </View>
-  )
-}
+    </TailwindProvider>
+  );
+};
 
 export default Short;
 
