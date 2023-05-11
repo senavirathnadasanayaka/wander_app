@@ -6,10 +6,12 @@ import {
   ScrollView,
   TouchableOpacity,
   TextInput,
+  Image
 } from "react-native";
 import { TailwindProvider } from "tailwindcss-react-native";
 import { useNavigation } from "@react-navigation/native";
 import Icon from "react-native-vector-icons/FontAwesome";
+import { Shoes, Wander, Map1,Tiger, Db,Travel2, Area1} from "../../assets/index";
 
 const Area = () => {
   useLayoutEffect(() => {
@@ -35,44 +37,50 @@ const Area = () => {
     { name: "Old Town of Galle port", route: "Town" },
   ];
 
-const filteredAreas = areas.filter((area) =>
-  area.name.toLowerCase().includes(searchQuery.toLowerCase())
-);
+  const filteredAreas = areas.filter((area) =>
+    area.name.toLowerCase().includes(searchQuery.toLowerCase())
+  );
 
   return (
     <TailwindProvider>
-      <View className=" bg-black flex-1">
-        <Text className="text-white mt-9 text-4xl left-2">Search Areas</Text>
-          <View className="flex-1 mt-2">
-            <TextInput
-              placeholder="Search Areas"
-              value={searchQuery}
-              onChangeText={(query) => setSearchQuery(query)}
-              placeholderTextColor="#A1A1AA"
-              className="flex-1 bg-slate-200 py-2.5 rounded-xl"
-            />
-          </View>
-          <ScrollView>
-            {filteredAreas.map((area) => (
-              <TouchableOpacity
-                key={area.route}
-                onPress={() => navigation.navigate(area.route)}
-              >
-                <View className="mt-2 h-24 bg-emerald-600">
-                  <Text className="text-3xl text-white mt-9 text-center">
-                    {area.name}
-                  </Text>
-                </View>
-              </TouchableOpacity>
-            ))}
-          </ScrollView>
+      <View style={{ backgroundColor: "#1A202C", flex: 1 }}>
+        <Text style={{ color: "#F7FAFC", marginTop: 36, fontSize: 40, marginLeft: 10 }}>Search Areas</Text>
+        <View style={{ marginTop: 20, padding: 10, backgroundColor: "#4A5568", borderRadius: 20 }}>
+          <TextInput
+            placeholder="Search Areas"
+            value={searchQuery}
+            onChangeText={(query) => setSearchQuery(query)}
+            placeholderTextColor="#A1A1AA"
+            style={{ backgroundColor: "#2D3748", padding: 10, borderRadius: 20, color: "#F7FAFC" }}
+          />
         </View>
-      
+        <ScrollView style={{ marginTop: 20 }}>
+          {filteredAreas.map((area) => (
+            
+<TouchableOpacity
+  key={area.route}
+  onPress={() => navigation.navigate(area.route)}
+  style={{ marginTop: 3, backgroundColor: "#CBD5E0", borderRadius: 9, flexDirection: 'row', alignItems: 'center' }}
+>
+  <View style={{ height: 100, alignItems: "flex-start", justifyContent: "center", flex: 1 }}>
+    <Text style={{ fontSize: 24, fontWeight: "bold", color: "#1A202C" }}>
+      {area.name}
+    </Text>
+  </View>
+  <View style={{ padding: 10 }}>
+    <Icon name="map-marker" size={24} color="#1A202C" />
+  </View>
+  <Image
+    source={Shoes}
+    style={{ width: 100, height: 100 }}
+  />
+</TouchableOpacity>
+
+          ))}
+        </ScrollView>
+      </View>
     </TailwindProvider>
   );
 };
-
-
-
 
 export default Area;

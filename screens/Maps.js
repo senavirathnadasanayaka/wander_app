@@ -1,4 +1,5 @@
 import React from "react";
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import MapView, { PROVIDER_GOOGLE, Marker } from "react-native-maps";
 import { createElement, useLayoutEffect } from "react";
 import { View, Text, Dimensions, Image } from "react-native";
@@ -6,23 +7,15 @@ import { useNavigation } from "@react-navigation/native";
 import { TailwindProvider } from "tailwindcss-react-native";
 import { Maker1 } from "../assets/index";
 
-
-
 export default function App() {
   let myMap;
   const navigation = useNavigation();
-   useLayoutEffect(() => {
-     navigation.setOptions({
-       headerShown: false,
-     }); 
-   }, []);
+
   useLayoutEffect(() => {
     navigation.setOptions({
       headerShown: false,
     });
   }, []);
-
-  
 
   const INITIAL_MARKER = [
     {
@@ -92,45 +85,46 @@ export default function App() {
       desc: "dsfdgh",
     },
   ]
+
   const renderMarker = () => {
     return INITIAL_MARKER.map((_marker) => (
       <Marker
-        keys={_marker["id"]}
-        coordinate = {_marker["region"]}
+        key={_marker.id} // Added key prop with a unique identifier
+        coordinate={_marker.region}
         title={_marker.title}
-        description={_marker["desc"]}
+        description={_marker.desc}
         onPress={() => {
-           myMap.fitToCoordinates([_marker["region"]], {
-            edgePadding:{top: 10, bottom:10, left:10, right:10},
-            animated: true
-           })
+          myMap.fitToCoordinates([_marker.region], {
+            edgePadding: { top: 10, bottom: 10, left: 10, right: 10 },
+            animated: true,
+          });
         }}
       />
     ));
-  }
+  };
 
-
-return (
-  <TailwindProvider>
-    <View className="bg-blue-800">
-      <View className="mt-12">
-        <Text className="text-3xl text-white">Wonder Maps</Text>
+  return (
+    <TailwindProvider>
+      <View className="bg-blue-800">
+        <View className="mt-12">
+          <Text className="text-3xl text-white">Wonder Maps</Text>
+        </View>
+        <View className="flex-1">
+          <MapView
+            ref={(ref) => (myMap = ref)}
+            className="w-98 h-5/6 mt-20 "
+            provider={PROVIDER_GOOGLE}
+            region={{
+              latitude: 7.957,
+              longitude: 80.7603,
+              latitudeDelta: 5,
+              longitudeDelta: 5,
+            }}
+          >
+            {renderMarker()}
+          </MapView>
+        </View>
       </View>
-      <View className="flex-1">
-        <MapView
-          ref={ref => myMap = ref}
-          className="w-98 h-5/6 mt-20 "
-          provider={PROVIDER_GOOGLE}
-          region={{
-            latitude: 7.957,
-            longitude: 80.7603,
-            latitudeDelta: 0.015,
-            longitudeDelta: 0.0121,
-          }}
-        >
-         { renderMarker() }
-        </MapView>
-      </View>
-    </View>
-  </TailwindProvider>
-)}
+    </TailwindProvider>
+  );
+}
