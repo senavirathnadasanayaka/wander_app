@@ -1,53 +1,57 @@
 import { Text, View, Image, TouchableOpacity, TextInput } from "react-native";
-import React, { useLayoutEffect,useState } from "react";
+import React, { useLayoutEffect, useState } from "react";
 import { TailwindProvider } from "tailwindcss-react-native";
 import { useNavigation } from "@react-navigation/native";
 import Icon from "react-native-vector-icons/Zocial";
 import { AsyncStorage } from 'react-native';
 import { auth } from "../../firebase";
 
-
-
-
-
 const LoginScreens = () => {
   const navigation = useNavigation();
- const [email, setEmail] = useState("");
- const [password, setPassword] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
-   const handleSignUp = () => {
-     auth
-       .createUserWithEmailAndPassword(email, password)
-       .then((userCredentials) => {
-         const user = userCredentials.user;
-         console.log("Registered with:", user.email);
-       })
-       .catch((error) => alert(error.message));
-   };
+  const handleSignUp = () => {
+    auth
+      .createUserWithEmailAndPassword(email, password)
+      .then((userCredentials) => {
+        const user = userCredentials.user;
+        console.log("Registered with:", user.email);
+        AsyncStorage.setItem('userEmail', user.email); // Store user email in AsyncStorage
+      })
+      .catch((error) => alert(error.message));
+  };
 
-   const handleLogin = () => {
-     auth
-       .signInWithEmailAndPassword(email, password)
-       .then((userCredentials) => {
-         const user = userCredentials.user;
-         console.log("Logged in with:", user.email);
-       })
-       .catch((error) => alert(error.message));
-   };
-
+  const handleLogin = () => {
+    auth
+      .signInWithEmailAndPassword(email, password)
+      .then((userCredentials) => {
+        const user = userCredentials.user;
+        console.log("Logged in with:", user.email);
+        AsyncStorage.setItem('userEmail', user.email); // Store user email in AsyncStorage
+      })
+      .catch((error) => alert(error.message));
+  };
 
   useLayoutEffect(() => {
     navigation.setOptions({
       headerShown: false,
     });
+
+    // Retrieve the stored email from AsyncStorage
+    AsyncStorage.getItem('userEmail')
+      .then((storedEmail) => {
+        if (storedEmail) {
+          setEmail(storedEmail);
+        }
+      })
+      .catch((error) => console.log(error));
   }, []);
-
-
 
   return (
     <TailwindProvider>
       <View>
-        <View className="flex-1 mt-72 left-10 ">
+        <View className="flex-1 mt-72 left-10">
           <TextInput
             placeholder="Email"
             value={email}
@@ -57,7 +61,7 @@ const LoginScreens = () => {
         </View>
         <View className="mt-3 left-10">
           <TextInput
-            placeholder="password"
+            placeholder="Password"
             value={password}
             onChangeText={(text) => setPassword(text)}
             secureTextEntry={true}
@@ -67,7 +71,7 @@ const LoginScreens = () => {
 
         <View className="mt-3 left-20">
           <TouchableOpacity onPress={handleLogin}>
-            <View className=" h-14 w-80 bg-blue-700 right-10 rounded-xl">
+            <View className="h-14 w-80 bg-blue-700 right-10 rounded-xl">
               <Text className="mt-3 text-center text-3xl">Login</Text>
             </View>
           </TouchableOpacity>
@@ -77,7 +81,7 @@ const LoginScreens = () => {
             </TouchableOpacity>
           </View>
           <TouchableOpacity>
-            <View className=" h-14 w-80 right-10 mt-5 bg-indigo-200 flex-row">
+            <View className="h-14 w-80 right-10 mt-5 bg-indigo-200 flex-row">
               <View className="mt-2 left-2">
                 <Icon name="facebook" size={30} color="#1d4ed8" />
               </View>
@@ -87,7 +91,7 @@ const LoginScreens = () => {
             </View>
           </TouchableOpacity>
           <TouchableOpacity>
-            <View className=" bg-red-200 h-14 w-80 right-10 mt-2 flex-row">
+            <View className="bg-red-200 h-14 w-80 right-10 mt-2 flex-row">
               <View className="mt-2 left-3">
                 <Icon name="google" size={30} color="#e11d48" />
               </View>
@@ -97,7 +101,7 @@ const LoginScreens = () => {
             </View>
           </TouchableOpacity>
           <TouchableOpacity>
-            <View className=" bg-stone-300 h-14 w-80 right-10 mt-2 flex-row">
+            <View className="bg-stone-300 h-14 w-80 right-10 mt-2 flex-row">
               <View className="mt-2 left-3">
                 <Icon name="appstore" size={30} color="#1c1917" />
               </View>
@@ -118,3 +122,4 @@ const LoginScreens = () => {
 };
 
 export default LoginScreens;
+
