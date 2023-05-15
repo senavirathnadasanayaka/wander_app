@@ -1,21 +1,21 @@
 import React from "react";
-import MapView, { PROVIDER_GOOGLE, MapMarker } from "react-native-maps";
-import { useLayoutEffect } from "react";
-import { View, Text, Dimensions, Image, TouchableOpacity } from "react-native";
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import MapView, { PROVIDER_GOOGLE, Marker } from "react-native-maps";
+import { createElement, useLayoutEffect } from "react";
+import { View, Text, Dimensions, Image } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { TailwindProvider } from "tailwindcss-react-native";
-import Icon from "react-native-vector-icons/FontAwesome";
-
-
+import { Maker1 } from "../assets/index";
 
 export default function App() {
   let myMap;
   const navigation = useNavigation();
+
   useLayoutEffect(() => {
     navigation.setOptions({
       headerShown: false,
     });
-  }, [navigation]);
+  }, []);
 
   const INITIAL_MARKER = [
     {
@@ -86,54 +86,45 @@ export default function App() {
     },
   ]
 
-const renderMarker = () => {
-  return INITIAL_MARKER.map((_marker) => (
-    <MapMarker
-      key={_marker["id"]}
-      coordinate = {_marker["region"]}
-      title={_marker.title}
-      description={_marker["desc"]}
-      onPress={() => {
-         myMap.fitToCoordinates([_marker["region"]], {
-          edgePadding:{top: 50, bottom:50, left:50, right:50},
-          animated: true
-         });
-      }}
-    />
-  ));
-}
-return (
-  <TailwindProvider>
-    <View className=" bg-black">
-      <View className="mt-12 flex-row">
-        <View className="mt-2 left-2 ">
-          <TouchableOpacity onPress={() => navigation.navigate("Discover")}>
-            <Icon name="arrow-left" size={30} color="#14532d" />
-          </TouchableOpacity>
+  const renderMarker = () => {
+    return INITIAL_MARKER.map((_marker) => (
+      <Marker
+        key={_marker.id} // Added key prop with a unique identifier
+        coordinate={_marker.region}
+        title={_marker.title}
+        description={_marker.desc}
+        onPress={() => {
+          myMap.fitToCoordinates([_marker.region], {
+            edgePadding: { top: 10, bottom: 10, left: 10, right: 10 },
+            animated: true,
+          });
+        }}
+      />
+    ));
+  };
+
+  return (
+    <TailwindProvider>
+      <View className="bg-blue-800">
+        <View className="mt-12">
+          <Text className="text-3xl text-white">Wonder Maps</Text>
         </View>
-        <View>
-          <Text className="text-4xl text-white left-5 mt-3">Wander Maps</Text>
-        </View>
-        <View className="mt-9 right-48">
-          <Text className="text-3xl text-white  mt-5 ">Watch best location and select your Trip  </Text>
+        <View className="flex-1">
+          <MapView
+            ref={(ref) => (myMap = ref)}
+            className="w-98 h-5/6 mt-20 "
+            provider={PROVIDER_GOOGLE}
+            region={{
+              latitude: 7.957,
+              longitude: 80.7603,
+              latitudeDelta: 5,
+              longitudeDelta: 5,
+            }}
+          >
+            {renderMarker()}
+          </MapView>
         </View>
       </View>
-
-      <View className="flex-1">
-  <MapView
-  ref={(ref) => (myMap = ref)}
-  className="w-98 h-5/6 mt-14"
-  provider={PROVIDER_GOOGLE}
-  region={{
-    latitude: 7.8731,
-    longitude: 80.7718,
-    latitudeDelta: 8,
-    longitudeDelta: 8,
-  }}
->
-  {renderMarker()}
-</MapView>
-</View>
-    </View>
-  </TailwindProvider>
-)}
+    </TailwindProvider>
+  );
+}

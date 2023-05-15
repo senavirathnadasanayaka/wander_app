@@ -1,321 +1,102 @@
-import React from 'react';
-import {
-  Dimensions,
-  FlatList,
-  SafeAreaView,
-  ScrollView,
-  StyleSheet,
-  Text,
-  TextInput,
-  TouchableOpacity,
-  View,
-  Image,
-  Animated,
-} from 'react-native';
-import { useNavigation } from "@react-navigation/native";
-import { useLayoutEffect } from "react";
-import Icon from 'react-native-vector-icons/MaterialIcons';
-import COLORS from "../Hotels/COLORS";
-import hotels from "../Hotels/hotels";
+import React, { useState } from 'react';
+import { View, Text, TouchableOpacity, FlatList,Image} from 'react-native';
 import { TailwindProvider } from "tailwindcss-react-native";
-const {width} = Dimensions.get('screen');
-const cardWidth = width / 1.8;
+import Icon from 'react-native-vector-icons/MaterialIcons';
+import COLORS from '../Hotels/COLORS';
 
-const Hotel = () => {
-  const navigation = useNavigation();
-  useLayoutEffect(() => {
-    navigation.setOptions({
-      headerShown: false,
-    });
-  }, [navigation]);
+const hotels = [
+  {
+    name: "Palmyra Nature Resort Sigiriya",
+    Review:"163",
+    category: 'luxury',
+    location: "No 207/A,Bandaranayaka Rd,Sigiriya",
+    price: 120,
+    image: require("../../assets/hotel1.jpg"),
+    details: `2.5 km from Sigiriya Rock, Palmyra Nature Resort Sigiriya offers accommodation with an outdoor swimming pool, free private parking, a garden and a shared lounge. `,
+  },
+  {
+   
+    name: "Adams Peak Inn",
+    Review:"200",
+    location: "Del House, 22070 Adams Peak, Sri Lanka ",
+    category: 'popular',
+    price: 70,
+    image: require("../../assets/adam.jpg"),
+    details: `Situated in Adams Peak, 600 m from Adam's Peak, Adams Peak Inn features accommodation with a shared lounge, free private parking, a restaurant and a bar`,
+  },
+  {
+    name: 'Budget Hotel',
+    Review:"300",
+    category: 'all',
+    rating: 3.5,
+    reviews: 200,
+  },
+  {
+    name: "Jetwing Yala",
+    Review:"600",
+    location: "Kirinda,Yala",
+    category: 'top-rated',
+    price: 90,
+    image: require("../../assets/hotel3.jpg"),
+    details: `Spread across 38 acres of land, Jetwing Yala features an outdoor pool, a business centre and luxurious rooms located on the borders of Yala National Park.`,
+  },
+  {
+    name: "Atha Resort",
+    Review:"400",
+    location: " 290/A , Airforce Road, Kibissa , Dambulla,Sigiriya ",
+    category: 'luxury',
+    price: 100,
+    image: require("../../assets/atha.jpg"),
+    details: `Set 5.3 km from Sigiriya Rock, Atha Resort offers 5-star accommodation in Sigiriya and features a garden`,
+  },
 
-  const categories = ['All', 'Popular', 'Top Rated', 'Featured', 'Luxury'];
-  const [selectedCategoryIndex, setSelectedCategoryIndex] = React.useState(0);
-  const [activeCardIndex, setActiveCardIndex] = React.useState(0);
-  const scrollX = React.useRef(new Animated.Value(0)).current;
+];
 
-  const CategoryList = ({navigation}) => {
-    return (
+const App = () => {
+  const [selectedCategory, setSelectedCategory] = useState('all');
+
+  const renderHotelItem = ({ item }) => (
+    <TailwindProvider>
+    <TouchableOpacity style={{ marginBottom: 20 }}>
+    <Text style={{ fontWeight: 'bold', fontSize: 25 }}>{item.name}</Text>
+    <Image style={{height: 180,width: '100%',borderTopRightRadius: 10,borderTopLeftRadius: 10,resizeMode: 'cover',}} source={item.image} />
+    <View className="flex-row left-56 -mt-7">
+    <Icon name="star" size={25} color={COLORS.orange} />
+    <Text style={{ fontSize: 15, color: COLORS.white }}>{item.Review}</Text>
+    </View>
+      <Text className="text-2xl">price: {item.price}</Text>
+      <Text>Details: {item. details}</Text>
+      <Text style={{ color: COLORS.grey, fontSize: 12 }}>location: {item.location}</Text>
+
       
-      <View style={style.categoryListContainer}>
-        {categories.map((item, index) => (
-          <TouchableOpacity
-            key={index}
-            activeOpacity={0.8}
-            onPress={() => setSelectedCategoryIndex(index)}>
-            <View>
-              <Text
-                style={{
-                  ...style.categoryListText,
-                  color:
-                    selectedCategoryIndex == index
-                      ? COLORS.primary
-                      : COLORS.grey,
-                }}>
-                {item}
-              </Text>
-              {selectedCategoryIndex == index && (
-                <View
-                  style={{
-                    height: 3,
-                    width: 30,
-                    backgroundColor: COLORS.primary,
-                    marginTop: 2,
-                  }}
-                />
-              )}
-            </View>
-          </TouchableOpacity>
-        ))}
-      </View>
-    );
-  };
-  const Card = ({hotel, index}) => {
-    const inputRange = [
-      (index - 1) * cardWidth,
-      index * cardWidth,
-      (index + 1) * cardWidth,
-    ];
-    const opacity = scrollX.interpolate({
-      inputRange,
-      outputRange: [0.7, 0, 0.7],
-    });
-    const scale = scrollX.interpolate({
-      inputRange,
-      outputRange: [0.8, 1, 0.8],
-    });
-    return (
-      <TailwindProvider>
-        <TouchableOpacity
-          disabled={activeCardIndex != index}
-          activeOpacity={1}
-          onPress={() => navigation.navigate("Book", hotel)}
-        >
-          <Animated.View style={{ ...style.card, transform: [{ scale }] }}>
-            <Animated.View style={{ ...style.cardOverLay, opacity }} />
-            <View style={style.priceTag}>
-              <Text
-                style={{
-                  color: COLORS.white,
-                  fontSize: 20,
-                  fontWeight: "bold",
-                }}
-              >
-                ${hotel.price}
-              </Text>
-            </View>
-            <Image source={hotel.image} style={style.cardImage} />
-            <View style={style.cardDetails}>
-              <View
-                style={{
-                  flexDirection: "row",
-                  justifyContent: "space-between",
-                }}
-              >
-                <View>
-                  <Text style={{ fontWeight: "bold", fontSize: 17 }}>
-                    {hotel.name}
-                  </Text>
-                  <Text style={{ color: COLORS.grey, fontSize: 12 }}>
-                    {hotel.location}
-                  </Text>
-                </View>
-                <TouchableOpacity onPress={() => navigation.navigate("Maps")}>
-                  <View className="right-2">
-                    <Icon name="room" size={30} color={COLORS.primary} />
-                  </View>
-                </TouchableOpacity>
-              </View>
-              <View
-                style={{
-                  flexDirection: "row",
-                  justifyContent: "space-between",
-                  marginTop: 10,
-                }}
-              >
-                <View style={{ flexDirection: "row" }}>
-                  <Icon name="star" size={15} color={COLORS.orange} />
-                  <Icon name="star" size={15} color={COLORS.orange} />
-                  <Icon name="star" size={15} color={COLORS.orange} />
-                  <Icon name="star" size={15} color={COLORS.orange} />
-                  <Icon name="star" size={15} color={COLORS.grey} />
-                </View>
-                <Text style={{ fontSize: 10, color: COLORS.grey }}>
-                  165reviews
-                </Text>
-              </View>
-            </View>
-          </Animated.View>
-        </TouchableOpacity>
-      </TailwindProvider>
-    );
-  };
-  const TopHotelCard = ({hotel}) => {
-    return (
-      <View style={style.topHotelCard}>
-        <View
-          style={{
-            position: 'absolute',
-            top: 5,
-            right: 5,
-            zIndex: 1,
-            flexDirection: 'row',
-          }}>
-          <Icon name="star" size={15} color={COLORS.orange} />
-          <Text style={{color: COLORS.white, fontWeight: 'bold', fontSize: 15}}>
-            5.0
-          </Text>
-        </View>
-        <Image style={style.topHotelCardImage} source={hotel.image} />
-        <View style={{paddingVertical: 5, paddingHorizontal: 10}}>
-          <Text style={{fontSize: 10, fontWeight: 'bold'}}>{hotel.name}</Text>
-          <Text style={{fontSize: 7, fontWeight: 'bold', color: COLORS.grey}}>
-            {hotel.location}
-          </Text>
-        </View>
-      </View>
-    );
-  };
+    </TouchableOpacity>
+    </TailwindProvider>
+  );
 
   return (
-    <TailwindProvider>
-    <SafeAreaView className="top-10">
-      <View className="flex-row justify-between p-4">
-        <View>
-          <Text className="text-4xl font-bold">
-            Find your hotel
-          </Text>
-          <View >
-          </View>
-        </View>
-        <Icon name="person-outline" size={38} color={COLORS.grey} />
+    
+    <View style={{ padding: 20 }}>
+      <View style={{ flexDirection: 'row', justifyContent: 'space-between', marginBottom: 20 }}>
+        <TouchableOpacity onPress={() => setSelectedCategory('all')}>
+          <Text style={{ color: selectedCategory === 'all' ? 'red' : 'black',fontSize: 20}}>All</Text>
+        </TouchableOpacity>
+        <TouchableOpacity onPress={() => setSelectedCategory('luxury')}>
+          <Text style={{ color: selectedCategory === 'luxury' ? 'red' : 'black' ,fontSize: 20}}>Luxury</Text>
+        </TouchableOpacity>
+        <TouchableOpacity onPress={() => setSelectedCategory('popular')}>
+          <Text style={{ color: selectedCategory === 'popular' ? 'red' : 'black' ,fontSize: 20}}>Popular</Text>
+        </TouchableOpacity>
+        <TouchableOpacity onPress={() => setSelectedCategory('top-rated')}>
+          <Text style={{ color: selectedCategory === 'top-rated' ? 'red' : 'black' ,fontSize: 20}}>Top Rated</Text>
+        </TouchableOpacity>
       </View>
-      <ScrollView showsVerticalScrollIndicator={false}>
-        <View className="h-12 bg-white mt-1 ml-2 flex-row align-middle rounded-xl">
-          <View className="mt-3 left-2">
-          <Icon name="search" size={30} />
-          </View>
-          <TextInput
-            placeholder="Search"
-            className="text-2xl pl-4"
-          
-          />
-        </View>
-        <CategoryList />
-        <View>
-          <Animated.FlatList
-            onMomentumScrollEnd={(e) => {
-              setActiveCardIndex(
-                Math.round(e.nativeEvent.contentOffset.x / cardWidth),
-              );
-            }}
-            onScroll={Animated.event(
-              [{nativeEvent: {contentOffset: {x: scrollX}}}],
-              {useNativeDriver: true},
-            )}
-            horizontal
-            data={hotels}
-            contentContainerStyle={{
-              paddingVertical: 30,
-              paddingLeft: 20,
-              paddingRight: cardWidth / 2 - 40,
-            }}
-            showsHorizontalScrollIndicator={false}
-            renderItem={({item, index}) => <Card hotel={item} index={index} />}
-            snapToInterval={cardWidth}
-          />
-        </View>
-        <View className="flex-row justify-between">
-          <Text className="font-bold text-gray-600 left-2">
-            Top hotels
-          </Text>
-          <Text className="font-bold text-gray-600 right-2">Show all</Text>
-        </View>
-        <FlatList
-          data={hotels}
-          horizontal
-          showsHorizontalScrollIndicator={false}
-          contentContainerStyle={{
-            paddingLeft: 20,
-            marginTop: 20,
-            paddingBottom: 30,
-          }}
-          renderItem={({item}) => <TopHotelCard hotel={item} />}
-        />
-      </ScrollView>
-    </SafeAreaView>
-    </TailwindProvider>
+      <FlatList
+        data={hotels.filter((hotel) => selectedCategory === 'all' || hotel.category === selectedCategory)}
+        renderItem={renderHotelItem}
+        keyExtractor={(item) => item.name}
+      />
+    </View>
   );
 };
 
-const style = StyleSheet.create({
-  categoryListContainer: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    marginHorizontal: 20,
-    marginTop: 30,
-  },
-  categoryListText: {
-    fontSize: 17,
-    fontWeight: 'bold',
-  },
-  card: {
-    height: 280,
-    width: cardWidth,
-    elevation: 15,
-    marginRight: 20,
-    borderRadius: 15,
-    backgroundColor: COLORS.white,
-  },
-  cardImage: {
-    height: 200,
-    width: '100%',
-    borderTopLeftRadius: 15,
-    borderTopRightRadius: 15,
-  },
-  priceTag: {
-    height: 60,
-    width: 80,
-    backgroundColor: COLORS.primary,
-    position: 'absolute',
-    zIndex: 1,
-    right: 0,
-    borderTopRightRadius: 15,
-    borderBottomLeftRadius: 15,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  cardDetails: {
-    height: 100,
-    borderRadius: 15,
-    backgroundColor: COLORS.white,
-    position: 'absolute',
-    bottom: 0,
-    padding: 20,
-    width: '100%',
-  },
-  cardOverLay: {
-    height: 280,
-    backgroundColor: COLORS.white,
-    position: 'absolute',
-    zIndex: 100,
-    width: cardWidth,
-    borderRadius: 15,
-  },
-  topHotelCard: {
-    height: 120,
-    width: 120,
-    backgroundColor: COLORS.white,
-    elevation: 15,
-    marginHorizontal: 10,
-    borderRadius: 10,
-  },
-  topHotelCardImage: {
-    height: 80,
-    width: '100%',
-    borderTopRightRadius: 10,
-    borderTopLeftRadius: 10,
-  },
-});
-
-export default Hotel;
+export default App;
