@@ -6,7 +6,7 @@ const Benthota = () => {
   return (
     <ImageBackground source={Sea1} className="flex-1 ">
       <View>
-        <Text>
+        <Text className="flex-1 text-3xl">
           Bentota is a coastal town located in the Galle District of the
           Southern Province of Sri Lanka. It is known for its beautiful beaches
           and is a popular tourist destination. Bentota Beach is a long, sandy
