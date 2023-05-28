@@ -18,7 +18,7 @@ import Galle from "./screens/AREA/Galle";
 import Adams from "./screens/AREA/Adams";
 import Discover from "./screens/Discover";
 import Short from "./screens/Shorttrip/Short";
-import LogScreen from "./screens/LogScreen";
+
 
 
 const Stack = createNativeStackNavigator();
@@ -45,7 +45,6 @@ export default function App() {
           <Stack.Screen name="Yala" component={Yala} />
           <Stack.Screen name="Galle" component={Galle} />
           <Stack.Screen name="Short" component={Short} />
-          <Stack.Screen name="LogScreen" component={LogScreen} />
         </Stack.Navigator>
       </NavigationContainer>
     </TailwindProvider>

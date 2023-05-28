@@ -44,15 +44,26 @@ const Area = () => {
   return (
     <TailwindProvider>
       <View style={{ backgroundColor: "#1A202C", flex: 1 }}>
-        <Text style={{ color: "#F7FAFC", marginTop: 36, fontSize: 40, marginLeft: 10 }}>Search Areas</Text>
+      <Text style={{ color: "#F7FAFC", marginTop: 36, fontSize: 40, marginLeft: 10, fontWeight: 'bold', textShadowColor: 'rgba(0, 0, 0, 0.5)', textShadowOffset: { width: 2, height: 2 }, textShadowRadius: 2 }}>Search Areas</Text>
         <View style={{ marginTop: 20, padding: 10, backgroundColor: "#4A5568", borderRadius: 20 }}>
-          <TextInput
-            placeholder="Search Areas"
-            value={searchQuery}
-            onChangeText={(query) => setSearchQuery(query)}
-            placeholderTextColor="#A1A1AA"
-            style={{ backgroundColor: "#2D3748", padding: 10, borderRadius: 20, color: "#F7FAFC" }}
-          />
+        <TextInput
+  placeholder="Search Areas"
+  value={searchQuery}
+  onChangeText={(query) => setSearchQuery(query)}
+  placeholderTextColor="#A1A1AA"
+  style={{
+    backgroundColor: "#2D3748",
+    paddingVertical: 12,
+    paddingHorizontal: 16,
+    borderRadius: 10,
+    color: "#F7FAFC",
+    fontSize: 16,
+    fontWeight: "bold",
+    borderWidth: 1,
+    borderColor: "#CBD5E0",
+  }}
+/>
+
         </View>
         <ScrollView style={{ marginTop: 20 }}>
           {filteredAreas.map((area) => (
